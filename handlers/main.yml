@@ -1,0 +1,6 @@
+---
+# handlers file for ajgarlag.kibana4
+- name: restart kibana4
+  service:
+    name: kibana4
+    state: restarted

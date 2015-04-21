@@ -1,0 +1,49 @@
+---
+# tasks file for ajgarlag.kibana4
+- name: validating kibana4 selected version
+  assert:
+    that: "'{{ ajgarlag_kibana4_version }}'.find('4.') == 0"
+
+- name: determining kibana4 facts
+  set_fact:
+    ajgl_kibana4_artifact: "kibana-{{ ajgarlag_kibana4_version }}-linux-{% if ansible_architecture == 'x86_64' %}x64{% else %}x86{% endif %}"
+
+- name: downloading kibana4
+  get_url:
+    url: https://download.elastic.co/kibana/kibana/{{ ajgl_kibana4_artifact }}.tar.gz
+    dest: /var/tmp/{{ ajgl_kibana4_artifact }}.tar.gz
+
+- name: extracting kibana4
+  unarchive:
+    src: /var/tmp/{{ ajgl_kibana4_artifact }}.tar.gz
+    copy: no
+    dest: /opt
+    creates: /opt/{{ ajgl_kibana4_artifact }}
+
+- name: linking to /opt/kibana
+  file:
+     src: /opt/{{ ajgl_kibana4_artifact }}
+     dest: /opt/kibana
+     state: link
+
+- name: downloading kibana4 init script
+  get_url:
+    url: https://gist.githubusercontent.com/thisismitch/8b15ac909aed214ad04a/raw/bce61d85643c2dcdfbc2728c55a41dab444dca20/kibana4
+    dest: /etc/init.d/kibana4
+    mode: 0755
+    owner: root
+    group: root
+
+- name: setting elasticsearch autostart option
+  service:
+    name: kibana4
+    enabled: "{{ ajgarlag_kibana4_autostart }}"
+
+- name: configuring kibana4
+  lineinfile:
+    dest: /opt/kibana/config/kibana.yml
+    regexp: '^\s*#?\s*{{ item.key }}\s*:'
+    line: '{{ item.key }}: {{ item.value }}'
+  with_dict: ajgarlag_kibana4_settings
+  notify:
+    - restart kibana4

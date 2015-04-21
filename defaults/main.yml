@@ -1,0 +1,8 @@
+---
+# defaults file for ajgarlag.elasticsearch
+ajgarlag_kibana4_version: 4.0.2
+
+ajgarlag_kibana4_autostart: yes
+
+ajgarlag_kibana4_settings: {}
+# "elasticsearch_url": http://127.0.0.1:9200"

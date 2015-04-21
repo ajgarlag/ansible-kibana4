@@ -1,0 +1,7 @@
+---
+- hosts: localhost
+  remote_user: root
+  roles:
+    - role: ajgarlag.kibana4
+      ajgarlag_kibana4_settings:
+        "elasticsearch_url": "http://127.0.0.1:9200"
