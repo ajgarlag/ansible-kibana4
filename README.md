@@ -8,9 +8,8 @@ Ansible role to install Kibana4.
 Role Variables
 --------------
 
-* **ajgarlag_kibana4_version**: Version of kibana4 to install (defaults to *4.0.2*)
-* **ajgarlag_kibana4_autostart**: Boolean flag to control if the kibana4 server should be started when booting the host (defaults to *yes*).
-* **ajgarlag_kibana4_settings**: Dict of parameters to write into the kibana4 config file, for example *{"elasticsearch_url": "http://127.0.0.1:9200"}*.
+* **ajgarlag_kibana4_version**: Version of kibana4 to install (defaults to `4.0.2`)
+* **ajgarlag_kibana4_settings**: Dict of parameters to write into the kibana4 config file (defaults to `{}`).
 
 Dependencies
 ------------
