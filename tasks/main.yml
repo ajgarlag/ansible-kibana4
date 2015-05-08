@@ -34,10 +34,12 @@
     owner: root
     group: root
 
-- name: setting elasticsearch autostart option
+- name: setting kibana4 to autostart
   service:
     name: kibana4
-    enabled: "{{ ajgarlag_kibana4_autostart }}"
+    enabled: yes
+  notify:
+    - restart kibana4
 
 - name: configuring kibana4
   lineinfile:

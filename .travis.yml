@@ -1,6 +1,7 @@
 ---
 language: python
 python: "2.7"
+sudo: required
 
 env:
   - ROLE=ajgarlag.kibana4
@@ -37,4 +38,4 @@ script:
     || (echo 'Idempotence test: fail' && exit 1)
 
   # Test that kibana4 is running
-  - service kibana4 status
+  - sudo service kibana4 status
