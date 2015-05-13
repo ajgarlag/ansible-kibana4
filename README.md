@@ -11,10 +11,6 @@ Role Variables
 * **ajgarlag_kibana4_version**: Version of kibana4 to install (defaults to `4.0.2`)
 * **ajgarlag_kibana4_settings**: Dict of parameters to write into the kibana4 config file (defaults to `{}`).
 
-Dependencies
-------------
-
-* **ajgarlag.bootstrap**: Ansible role to perform some basic setup to execute other ansible roles.
 
 Example Playbook
 ----------------
