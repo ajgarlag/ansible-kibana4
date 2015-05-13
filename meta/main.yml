@@ -15,5 +15,3 @@ galaxy_info:
   categories:
     - monitoring
     - system
-dependencies:
-  - ajgarlag.bootstrap

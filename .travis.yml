@@ -20,9 +20,6 @@ before_script:
   # Link the current directory to the role name
   - ln -s $PWD ../$ROLE
 
-  # Install role requirements
-  - ansible-galaxy install -r requirements.yml
-
 script:
   # Check the role/playbook's syntax.
   - "ansible-playbook -i tests/inventory tests/test.yml --syntax-check"
